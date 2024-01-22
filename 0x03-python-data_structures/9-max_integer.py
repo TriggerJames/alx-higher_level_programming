@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
-def new_in_list(my_list, idx, element):
-    if idx < 0 or idx >= len(my_list):
-        return my_list.copy()
-
-    new_list = my_list.copy()
-    new_list[idx] = element
-    return new_list
+def max_integer(my_list=[]):
+    if len(my_list) == 0:
+        return None
+    max_int = my_list[0]
+    for num in my_list:
+        if num > max_int:
+            max_int = num
+    return max_int
