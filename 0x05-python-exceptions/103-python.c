@@ -7,6 +7,7 @@ void print_python_list(PyObject *p) {
         fprintf(stderr, "[*] Python list is required\n");
         return;
     }
+    setbuf(stdout, NULL);
     Py_ssize_t size = PyList_Size(p);
     Py_ssize_t i;
     printf("[*] Python list info\n");
@@ -17,6 +18,7 @@ void print_python_list(PyObject *p) {
         const char *typeName = item->ob_type->tp_name;
         printf("Element %ld: %s\n", i, typeName);
     }
+    fflush(stdout);
 }
 
 void print_python_bytes(PyObject *p) {
@@ -24,6 +26,7 @@ void print_python_bytes(PyObject *p) {
         fprintf(stderr, "[*] Python bytes object is required\n");
         return;
     }
+    setbuf(stdout, NULL);
     Py_ssize_t size = PyBytes_Size(p);
     Py_ssize_t i;
     printf("[.] bytes object info\n");
@@ -34,6 +37,7 @@ void print_python_bytes(PyObject *p) {
         printf(" %02hhx", ((char *)PyBytes_AsString(p))[i]);
     }
     printf("\n");
+    fflush(stdout);
 }
 
 void print_python_float(PyObject *p) {
@@ -41,6 +45,9 @@ void print_python_float(PyObject *p) {
         fprintf(stderr, "[*] Python float object is required\n");
         return;
     }
+    setbuf(stdout, NULL);
     printf("[.] float object info\n");
     printf("  value: %f\n", ((PyFloatObject *)p)->ob_fval);
+    fflush(stdout);
 }
+
