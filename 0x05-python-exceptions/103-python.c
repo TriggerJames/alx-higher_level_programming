@@ -3,11 +3,11 @@
 #include <stdio.h>
 
 void print_python_list(PyObject *p) {
+    setbuf(stdout, NULL);
     if (!PyList_Check(p)) {
         fprintf(stderr, "[*] Python list is required\n");
         return;
     }
-    setbuf(stdout, NULL);
     Py_ssize_t size = PyList_Size(p);
     Py_ssize_t i;
     printf("[*] Python list info\n");
@@ -22,11 +22,11 @@ void print_python_list(PyObject *p) {
 }
 
 void print_python_bytes(PyObject *p) {
+    setbuf(stdout, NULL);
     if (!PyBytes_Check(p)) {
         fprintf(stderr, "[*] Python bytes object is required\n");
         return;
     }
-    setbuf(stdout, NULL);
     Py_ssize_t size = PyBytes_Size(p);
     Py_ssize_t i;
     printf("[.] bytes object info\n");
@@ -41,11 +41,11 @@ void print_python_bytes(PyObject *p) {
 }
 
 void print_python_float(PyObject *p) {
+    setbuf(stdout, NULL);
     if (!PyFloat_Check(p)) {
         fprintf(stderr, "[*] Python float object is required\n");
         return;
     }
-    setbuf(stdout, NULL);
     printf("[.] float object info\n");
     printf("  value: %f\n", ((PyFloatObject *)p)->ob_fval);
     fflush(stdout);
