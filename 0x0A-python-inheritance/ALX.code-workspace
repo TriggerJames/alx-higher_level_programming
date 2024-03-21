@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "ALX",
+			"path": "../.."
+		},
+		{
+			"name": "Legion",
+			"path": "../../../Legion"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"sort.h": "c"
+		}
+	}
+}
