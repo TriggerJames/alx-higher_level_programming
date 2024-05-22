@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-"""Prints the State object with the name passed as argumentfrom the database hbtn_0e_6_usa"""
+"""Prints the State object with the name passed
+as argumentfrom the database hbtn_0e_6_usa"""
 
 if __name__ == "__main__":
     from sqlalchemy.orm import sessionmaker

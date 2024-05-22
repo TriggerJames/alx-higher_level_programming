@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-"""Displays all values in the states table of hbtn_0e_0_usa where name matches the argument.(Safe from SQL Injection)"""
+"""Displays all values in the states table of hbtn_0e_0_usa
+where name matches the argument.(Safe from SQL Injection)"""
 
 if __name__ == '__main__':
     from sys import argv
