@@ -13,7 +13,6 @@ request(apiUrl, function (error, response, body) {
     const characterPromises = movieData.characters.map((characterUrl) => {
       return new Promise((resolve, reject) => {
         request(characterUrl, function (charError, charResponse, charBody) {
-         
           if (!charError && charResponse.statusCode === 200) {
             const characterData = JSON.parse(charBody);
             resolve(characterData.name);
