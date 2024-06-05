@@ -1,12 +1,14 @@
-#!usr/bin/node
+#!/usr/bin/node
 
-// Script that reads and prints the content of a file.
+const fs = require('fs');
 
-const filesys = require('fs')
-filesys.readFile(process.argv[2], 'utf-8',
-    function (err,data)
-    {if (err){
-    console.log(err);
-    return;}
-    console.log(data);
+// Import the built-in Node.js 'fs' module.
+
+fs.readFile(process.argv[2], 'utf8', function (error, content) {
+ 
+  if (error) {
+    console.error('Error reading the file:', error);
+  } else {
+    console.log(content);
+  }
 });
