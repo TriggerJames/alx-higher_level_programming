@@ -1,78 +1,58 @@
 #!/usr/bin/python3
-"""Multiplying two matrices.
+
+"""
+Matrix multiplication module.
+Multiplies two matrices.
+Must be list/ list of list
+Raise exceptions where necessary.
 """
 
 
 def matrix_mul(m_a, m_b):
-    """Multiples two matrices.
+    """
+    Multiply matrices.
 
     Args:
-        m_a (list): The first matrix.
-        m_b (list): The second matrix.
+        m_a: matrix a
+        m_b: matrix b
 
-    Returns:
-        new_matrix: The new product matrix.
-
-    Raises:
-        TypeError: An error occurred accessing the variable type.
-        ValueError: An error occurred accessing the variable value.
+    Return:
+        Multiplication of a and b
     """
 
-    stmts = {
-        "err_list": "must be a list",
-        "err_matrix": "must be a list of lists",
-        "err_type": "should contain only integers or floats",
-        "war_empty": "can't be empty",
-        "war_multi": "m_a and m_b can't be multiplied",
-        "stmt_row": "each row of",
-        "stmt_size": "must should be of the same size",
-    }
+    if not isinstance(m_a, list) or not isinstance(m_b, list):
+        raise TypeError("m_a must be a list or m_b must be a list")
 
-    if type(m_a) is not list:
-        raise TypeError("m_a " + stmts["err_list"])
+    err_msg1 = "m_a must be a list of lists or m_b must be a list of lists"
+    if (
+        not all(isinstance(row, list) for row in m_a)
+        or not all(isinstance(row, list) for row in m_b)
+    ):
+        raise TypeError(err_msg1)
 
-    if type(m_b) is not list:
-        raise TypeError("m_b " + stmts["err_list"])
+    if not m_a or not m_b:
+        raise ValueError("m_a can't be empty or m_b can't be empty")
 
-    if not any(isinstance(row, list) for row in m_a):
-        raise TypeError("m_a " + stmts["err_matrix"])
+    if not all(isinstance(num, (int, float)) for row in m_a for num in row):
+        raise TypeError("m_a should contain only integers or floats")
+    if not all(isinstance(num, (int, float)) for row in m_b for num in row):
+        raise TypeError("m_b should contain only integers or floats")
 
-    if not any(isinstance(row, list) for row in m_b):
-        raise TypeError("m_b " + stmts["err_matrix"])
-
-    for i in m_a:
-        if len(i) == 0:
-            raise ValueError("m_a " + stmts["war_empty"])
-
-    for i in m_b:
-        if len(i) == 0:
-            raise ValueError("m_b " + stmts["war_empty"])
-
-    for row in m_a:
-        for i in row:
-            if not isinstance(i, (int, float)):
-                raise TypeError("m_a " + stmts["err_type"])
-
-    for row in m_b:
-        for i in row:
-            if not isinstance(i, (int, float)):
-                raise TypeError("m_b " + stmts["err_type"])
-
-    if len(set(len(row) for row in m_a)) != 1:
-        raise TypeError(stmts["stmt_row"] + " m_a " + stmts["stmt_size"])
-
-    if len(set(len(row) for row in m_b)) != 1:
-        raise TypeError(stmts["stmt_row"] + " m_b " + stmts["stmt_size"])
+    if not all(len(row) == len(m_a[0]) for row in m_a):
+        raise TypeError("each row of m_a must be of the same size")
+    if not all(len(row) == len(m_b[0]) for row in m_b):
+        raise TypeError("each row of m_b must be of the same size")
 
     if len(m_a[0]) != len(m_b):
-        raise ValueError(stmts["war_multi"])
+        raise ValueError("m_a and m_b can't be multiplied")
 
-    new_matrix = []
-    for arr in m_a:
-        new_arr = []
-        for i in range(len(m_b[0])):
-            new_arr.append(
-                sum(a * b for a, b in zip(arr, list(r[i] for r in m_b))))
-        new_matrix.append(new_arr)
+    # Initialize the result matrix with zeros
+    result = [[0 for _ in range(len(m_b[0]))] for _ in range(len(m_a))]
 
-    return new_matrix
+    # Perform matrix multiplication
+    for i in range(len(m_a)):
+        for j in range(len(m_b[0])):
+            for k in range(len(m_b)):
+                result[i][j] += m_a[i][k] * m_b[k][j]
+
+    return result
