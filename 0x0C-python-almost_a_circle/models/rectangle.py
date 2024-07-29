@@ -6,11 +6,11 @@ from models.base import Base
 
 
 class Rectangle(Base):
-    
+
     """Represent a rectangle"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        
+
         """Initialize a new Rectangle.
 
         Args:
@@ -25,7 +25,7 @@ class Rectangle(Base):
             TypeError: If either of x or y is not an int.
             ValueError: If either of x or y < 0.
         """
-        
+
         self.width = width
         self.height = height
         self.x = x
@@ -36,7 +36,7 @@ class Rectangle(Base):
     def width(self):
         
         """Set/get the width of the Rectangle"""
-        
+
         return self.__width
 
     @width.setter
@@ -49,7 +49,7 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        
+
         """Set/get the height of the Rectangle"""
         return self.__height
 
@@ -63,9 +63,9 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        
+
         """Set/get the x coordinate of the Rectangle"""
-        
+
         return self.__x
 
     @x.setter
@@ -78,9 +78,9 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        
+
         """Set/get the y coordinate of the Rectangle"""
-        
+
         return self.__y
 
     @y.setter
@@ -96,9 +96,9 @@ class Rectangle(Base):
         return self.width * self.height
 
     def display(self):
-        
+
         """Print the Rectangle using the `#` character"""
-        
+
         if self.width == 0 or self.height == 0:
             print("")
             return
@@ -110,7 +110,7 @@ class Rectangle(Base):
             print("")
 
     def update(self, *args, **kwargs):
-        
+
         """Update the Rectangle.
 
         Args:
@@ -122,7 +122,7 @@ class Rectangle(Base):
                 - 5th argument represents y attribute
             **kwargs (dict): New key/value pairs of attributes.
         """
-        
+
         if args and len(args) != 0:
             a = 0
             for arg in args:
@@ -158,9 +158,9 @@ class Rectangle(Base):
                     self.y = v
 
     def to_dictionary(self):
-        
+
         """Return the dictionary representation of a Rectangle"""
-        
+
         return {
             "id": self.id,
             "width": self.width,
@@ -170,10 +170,9 @@ class Rectangle(Base):
         }
 
     def __str__(self):
-        
+
         """Return the print() and str() representation of the Rectangle"""
-        
+
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id,
                                                        self.x, self.y,
                                                        self.width, self.height)
-
